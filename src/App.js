@@ -9,9 +9,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-headerzz">
         <LoadHtmlComponent />
-      </header>
     </div>
   );
 }

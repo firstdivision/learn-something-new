@@ -1,4 +1,5 @@
 import React from "react";
+import './index.css';
 
 export default class LoadHtmlComponent extends React.Component {
 
@@ -10,39 +11,31 @@ export default class LoadHtmlComponent extends React.Component {
 
         this.wikipediaUrl = "https://en.wikipedia.org/wiki/Special:RandomInCategory/Good_articles";
         this.state = {
-            words: ''
+            words: '',
+            random: 0
         }
     }
 
-    componentDidMount()
-    {
-        this.makeWords();
-    }
 
-    makeWords = () => {
+    reloadIframe = () => {
 
-
+        this.setState({random: this.state.random + 1});
 
     }
 
     render() {
 
         return (
-            <div>
-                <h2><a href="#" className="App-link" onClick={this.makeWords}>Learn Something New</a></h2>
+            <div className="load-html-container">
+                <h2><a href="#" className="App-link" onClick={this.reloadIframe}>Learn Something New</a></h2>
                 { this.state.words }
                 <iframe
+                    key={this.state.random}
                     title="Wikipedia"
                     src={this.wikipediaUrl}
-                    //src="https://en.wikipedia.org/wiki/Special:RandomInCategory/Good_articles"
-                    //height="720"
-                    //width="1280"
-                    style={{overflow:'hidden', height:'100%', width:'100%'}}
+                    style={{height:'100%', width:'100%', overflow: 'scroll'}}
                     height="100%" width="100%"
-                    frameBorder="0"
-                    scrolling="no"
                     allowFullScreen={true}
-                    //ref={refIframe}
                 ></iframe>
             </div>
         );
